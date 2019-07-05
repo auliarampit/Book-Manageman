@@ -1,0 +1,18 @@
+.add {
+    padding: 12px 30px;
+    background-color: #f4cf5d;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12pt;
+    color: white;
+    outline: none;
+    float: right;
+    margin-right: 220px;
+    font-weight: bold;
+    z-index: 1100;
+  }
+  .add:active{
+    background-color: #c79e21;
+    cursor:auto;
+  }
