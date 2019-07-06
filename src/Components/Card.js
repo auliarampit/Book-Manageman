@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import '../style/Card.css'
 import '../style/Button.css'
 
@@ -15,7 +15,12 @@ function text (text) {
 }
 
 function Card (props) {
-  let data = props.data.Data
+  let dataMap
+  if(props.seacrh !== "") {
+    dataMap = props.data.Data.filter(item =>  item.title.toLowerCase.indexOf(props.seacrh.toLowerCase()) > -1)
+  }
+  let data = props.seacrh !== '' ? dataMap : props.data.Data
+  // let data = props.data.Data
   return (
     <div className='card'>
       <button className='add' onClick={props.showModal}>ADD</button>

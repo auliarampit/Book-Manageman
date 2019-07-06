@@ -13,7 +13,7 @@ import ModalDelete from './Components/ModalDelete'
 class App extends Component {
   constructor () {
     super()
-    this.state = {Data, show : false, modalDelete: false}
+    this.state = {Data, show : false, modalDelete: false, seacrh: ""}
   }
   showModal = () => {
     this.setState({ show : true})
@@ -44,14 +44,20 @@ class App extends Component {
   updateData = (index, updateData) => {
     this.state.Data[index] = updateData
   }
+  setSeacrh = (seacrh) => {
+    this.setState({seacrh:seacrh})
+  }
   render() {
     return (
       <div id="app">
         <Router>
           <Redirect exact from="/"  to="/book" />
           <Route exact path={"/book"} component={Nav} />
-          <Route exact path={"/book"} component={Seacrh} />
-          <Route exact path={"/book"} render={(props) => <Card data={this.state} showModal={this.showModal} {...props}/>} />
+          <Route exact path={"/book"} render={ () =><Seacrh setSeacrh={this.setSeacrh}/>} />
+
+          <Route exact path={"/book"} render={() => <Card data={this.state} seacrh={this.state.seacrh} showModal={this.showModal}/>} />
+
+          <Route exact path={"/book"} render={() => <Modal show={this.state.show} dataState={this.state} handleClose={this.hideModal} dataAdd={this.addData} />} />
 
           <Route exact path={"/book/:bookid"} render={(props) => <BookDetail data={this.state} showModal={this.showModal} showModalDelete={this.showModalDelete} {...props} />} />
 
