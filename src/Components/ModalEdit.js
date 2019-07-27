@@ -1,53 +1,57 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getBook, postBook } from '../Publics/Actions/book';
+import { updateBook } from '../Publics/Actions/book';
 
 
-class Modal extends Component {
+class ModalEdit extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      book: []
+      editData: this.props.book.bookList.filter((item) => item.idBook == 
+      this.props.match.params.bookid)
     }
-  }
-
-  componentDidMount = async() => {
-    await this.props.dispatch(getBook())
-    this.setState ({
-      book: this.props.book
-    })
-  }
-
-  add = () => {
     
-    this.props.dispatch(postBook({
+  }
+
+  update = () => {
+  
+    this.props.dispatch(updateBook({
       name: document.getElementById('title').value,
       image: document.getElementById('image').value,
       idCategory: document.getElementById('category').value,
       writer: document.getElementById('writer').value,
       location: document.getElementById('location').value,
-      description: document.getElementById('description').value,
-      
-
-    }))
-  
+      description: document.getElementById('description').value
+    },this.props.match.params.bookid))
+  }
+  changeHendle = (data) => {
+    const name = data.currentTarget.name
+    const val = data.currentTarget.value
+    this.state.editData[0][name] = val
+      this .setState({
+        editData:this.state.editData
+      })
+      console.log(this.state)
   }
 
   render() {
-    const showHideClassName = this.props.show ? "modal display-block" : "modal display-none"
+
+    const showHideClassName = this.props.modalEdit ? "modal display-block" : "modal display-none"
   return (
     <div className={showHideClassName}>
       <section className='modal-main'>
-        <button onClick={this.props.handleClose} className={'close'}>X</button>
-        <p>Add Data</p>
+        <button onClick={this.props.hideModalEdit} className={'close'}>X</button>
+        <p>Edit Data</p>
         <div>
           <div className='inputGroup'>
             <div className='label'>
               <p>Url Image</p>
             </div>
             <div className='input'>
-              <input type='text' placeholder='Url Image ...' id={'image'} name='image_url' required />
+              <input type='text' placeholder='Url Image ...' id={'image'} name='image'
+                value = {this.state.editData[0].image} onChange= {this.changeHendle} required
+              />
             </div>
           </div>
           <div className='inputGroup'>
@@ -55,7 +59,8 @@ class Modal extends Component {
               <p>Title</p>
             </div>
             <div className='input'>
-              <input type='text' placeholder='Title ...' id={'title'} name='title' required/>
+              <input type='text' placeholder='Title ...' id={'title'} name='nameBook'
+              value={this.state.editData[0].nameBook} onChange={this.changeHendle}  required/>
             </div>
           </div>
 
@@ -64,7 +69,7 @@ class Modal extends Component {
               <p>Category</p>
             </div>
             <div className='input'>
-            <select id={'category'}>
+            <select id={'category'} value={parseInt(this.state.editData[0].idCategory)} onChange={this.changeHendle} name='idCategory' required>
                 <option value=''>=PILIH=</option>
                 <option value="1">Anak-Anak</option>
                 <option value="2">Dewasa</option>
@@ -77,7 +82,8 @@ class Modal extends Component {
               <p>Writer</p>
             </div>
             <div className='input'>
-              <input type='text' placeholder='Writer ...' id={'writer'} name='writer' required/>
+              <input type='text' placeholder='Writer ...' id={'writer'} name='writerBook'
+              value={this.state.editData[0].writerBook} onChange= {this.changeHendle} required/>
             </div>
           </div>
 
@@ -86,7 +92,8 @@ class Modal extends Component {
               <p>Location</p>
             </div>
             <div className='input'>
-              <input type='text' placeholder='Location ...' id={'location'} name='location' required/>
+              <input type='text' placeholder='Location ...' id={'location'} name='location'
+              value={this.state.editData[0].location} onChange={this.changeHendle} required/>
             </div>
           </div>
 
@@ -95,11 +102,12 @@ class Modal extends Component {
               <p>Description</p>
             </div>
             <div className='input'>
-              <textarea placeholder='Description' rows='5' name='description' id={'description'} required/>
+              <textarea placeholder='Description' rows='5' name='description' id={'description'}
+              value={this.state.editData[0].description} onChange={this.changeHendle} required/>
             </div>
           </div>
           <div>
-            <button className='save' onClick={this.add} >Save</button>
+            <button className='save' onClick={this.update} >Save</button>
           </div>
         </div>
       </section>
@@ -113,4 +121,4 @@ const mapStateToProps = (state) => {
     book: state.book
   }
 }
-export default connect(mapStateToProps) (Modal)
+export default connect(mapStateToProps) (ModalEdit)

@@ -40,3 +40,10 @@
     right: -250px;
   }
   
+  .pinjam {
+    width: 150px;
+    height: 40px;
+    background: transparent;
+    border-radius: 10px;
+    outline: none;
+  }

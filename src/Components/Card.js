@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import '../style/Card.css'
 import '../style/Button.css'
+import {connect} from 'react-redux';
 
 import { Link } from 'react-router-dom'
+import { getBook } from '../Publics/Actions/book'
 
 function text (text) {
+  console.log(text)
   if (text.length > 20) {
     let textSplit = text.substr(0, 20)
     return `${textSplit} ...`
@@ -14,26 +17,35 @@ function text (text) {
   }
 }
 
-function Card (props) {
-  let dataMap
-  if(props.seacrh !== "") {
-    dataMap = props.data.Data.filter(item =>  item.title.toLowerCase.indexOf(props.seacrh.toLowerCase()) > -1)
+class Card extends Component  {
+
+  componentDidMount(){
+    this.getBooks();
+
   }
-  let data = props.seacrh !== '' ? dataMap : props.data.Data
-  // let data = props.data.Data
+
+  getBooks = () => {
+    this.props.dispatch(getBook());
+  }
+  
+  render(){
+    console.log(this.props.book)
   return (
     <div className='card'>
-      <button className='add' onClick={props.showModal}>ADD</button>
+      <button className='add' onClick={this.props.showModal} >ADD</button>
       <div className='card-item'>
         {
-          data.map(
+        this.props.book.bookList.map(
             item => {
               return (
-                <Link to={`/book/${item.bookid}`}>
-                  <div className='item' id='items' bookid={item.bookid}>
-                    <img src={item.image_url} alt='gambar' />
+                <Link to={`/book/${item.idBook}`}
+                >
+                  <div className='item' id='items' idBook={item.idBook}>
+                    <img src={item.image ? item.image : 'http://rsudblambangan.banyuwangikab.go.id/asset/foto_berita/no-image.jpg'} alt='gambar' />
                     <div>
-                      <p>{text(item.title)}</p>
+                      <p>{text(item.nameBook)}</p>
+                    </div>
+                    <div>
                     </div>
                   </div>
                 </Link>
@@ -45,6 +57,13 @@ function Card (props) {
 
     </div>
   )
+  }
 }
 
-export default Card
+const mapStateToProps = ( state ) => {
+  return{
+    book:state.book
+  }
+}
+
+export default connect(mapStateToProps)(Card);

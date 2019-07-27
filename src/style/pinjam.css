@@ -1,0 +1,58 @@
+  
+  .modal-pinjam {
+    position: fixed;
+    background: white;
+    width: 55%;
+    height: 400px;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px gray
+  }
+  .close {
+    position: absolute;
+    padding-top: 20px 30px;
+    right: 0px;
+  }
+  .h3 {
+    margin-left: 25px;
+  }
+  .inputt input {
+    width: 300px;
+    height: 50px;
+    margin-top: 15px;
+    float: left;
+    padding: 10px 30px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid black;
+    /* box-shadow: 10px; */
+  }
+  .contentt{
+    padding: 28px 100px;
+    width:60%;
+    position: relative;
+  }
+  .imageBookk{
+    position: absolute;
+    top: -180px;
+    width: 30%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px black;
+    right: -250px;
+  }
+  .save {
+    padding: 12px 30px;
+    background-color: #f4cf5d;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12pt;
+    color: white;
+    outline: none;
+    float: right;
+    margin-right: 100px;
+    font-weight: bold;
+    z-index: 1100;
+  }

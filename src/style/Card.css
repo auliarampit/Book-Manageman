@@ -43,7 +43,7 @@
     box-sizing: border-box;
   }
   .item p {
-    margin: 0;
-    width: 100%;
-    font-size: 15pt;
+    /* margin: 0;
+    width: 100%; */
+    font-size: 18px;
   }
