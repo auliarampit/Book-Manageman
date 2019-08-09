@@ -21,19 +21,24 @@ class Card extends Component  {
   state = {
     book : []
   }
-  componentDidMount(){
-    this.getBooks();
-
-  }
-
-  getBooks = async () => {
+  componentDidMount = async ()=>{
     await this.props.dispatch(getBook())
     .then(()=>{
       this.setState({
         book : this.props.book
       })
     })
+
   }
+
+  // getBooks = async () => {
+  //   await this.props.dispatch(getBook())
+  //   .then(()=>{
+  //     this.setState({
+  //       book : this.props.book
+  //     })
+  //   })
+  // }
   
   render(){
     console.log(this.props.book)

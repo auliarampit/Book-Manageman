@@ -94,7 +94,7 @@ class App extends Component {
 
           <Route exact path={"/book"} render={ () =><Seacrh setSeacrh={this.setSeacrh}/>} />
 
-          <Route exact path={"/book"} render={() => <Card data={this.state} seacrh={this.state.seacrh} showModal={this.showModal}/>} />
+          <Route exact path={'/book'} render={() => <Card data={this.state} seacrh={this.state.seacrh} showModal={this.showModal}/>} />
 
           <Route exact path={"/book"} render={() => <Modal show={this.state.show} dataState={this.state} handleClose={this.hideModal} dataAdd={this.addData} />} />
 
