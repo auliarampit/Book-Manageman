@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import '../style/Login.css'
 import {login} from '../Publics/Actions/login'
 import {connect} from 'react-redux'
-import ModalAlert from '../Components/ModalAlert'
+import {Redirect} from 'react-router-dom'
+
 
 
 class Login extends Component {
@@ -10,27 +11,26 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            modal: ""
+            redirect: ''
         }
     }
-    setModal = ()=>{
-        this.setState({modal:""})
-    }
 
-    login = () => {
-        this.props.dispatch(login({
+
+    login = async () => {
+        await this.props.dispatch(login({
             email : document.getElementById('email').value,
             password: document.getElementById('password').value
         }))
+        console.log(this.props.login.login)
         if (this.props.login.login === 'Password Salah') {
-            const modal = <ModalAlert show={true} pesan={"Password Salah"} error={true} link={"/login"} setModal={this.setModal} />
-            this.setState({ modal: modal })
+            alert('Password anda salah')
         } else if (this.props.login.login === "Email Tidak Terdaftar") {
-            const modal = <ModalAlert show={true} pesan={"Email Tidak Terdaftar"} error={true} link={"/login"} setModal={this.setModal} />
-            this.setState({ modal: modal })
+            alert('Email Tidak Terdaftar')
         } else {
-            const modal = <ModalAlert show={true} pesan={"Login Sukses"} success={true} link={"/book"} setModal={this.setModal}/>
-            this.setState({ modal: modal })
+            alert(`Selamat Datang ${localStorage.fullName}`) 
+            this.setState({
+                redirect: <Redirect to={'/book'} />
+            })
         }
     }
 
@@ -38,7 +38,7 @@ class Login extends Component {
 
         return(
             <div className="container">
-                {/* {this.state.modal} */}
+                {this.state.redirect}
                 <div>
                     <p style = {{
                         textAlign: 'center',

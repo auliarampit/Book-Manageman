@@ -51,8 +51,8 @@ function convert (date) {
       <div>
         <ul>
           <li><Link to='/book' className='back'>&lArr;</Link></li>
-          <li className='button' onClick={this.props.showModalEdit}>Edit</li>
-          <li className='button' onClick={this.deleteData}>Delete</li>
+          <li className='button' onClick={localStorage.token ? this.props.showModalEdit : ''}>Edit</li>
+          <li className='button' onClick={localStorage.token ? this.deleteData : () =>  alert('Anda harus login terlebih dahulu')}>Delete</li>
         </ul>
         <img className={'imageHeader'} src={this.state.detailData[0].image ? this.state.detailData[0].image :
         'http://rsudblambangan.banyuwangikab.go.id/asset/foto_berita/no-image.jpg'} alt={this.state.detailData[0].image} />

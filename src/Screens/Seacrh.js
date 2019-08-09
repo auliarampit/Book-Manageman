@@ -6,7 +6,7 @@ function Seacrh (props) {
     props.setSeacrh(document.getElementById('seacrh').value)
   }
   return (
-    <div>
+    <div style={{clear: "both"}}>
       <input type='text' id='seacrh' onKeyUp={seacrh} placeholder='Seacrh Book...' />
     </div>
   )

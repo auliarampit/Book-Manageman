@@ -51,6 +51,28 @@ const book = (state = initialState, action) => {
                     listPinjam: action.payload.data,
                 }
   
+                case 'PINJAM_PENDING':
+                    return{
+                        ...state,
+                        isLoading: true,
+                        isFulFilled: false,
+                        isRejected: false,
+                    };
+                    case 'PINJAM_REJECTED':
+                        return{
+                            ...state,
+                            isLoading: false,
+                            isRejected: true,
+                    };
+                    case 'PINJAM_FULFILLED':
+                        return{
+                            ...state,
+                            isLoading: false,
+                            isFulFilled: true,
+                            listPinjam: action.payload.data,
+                        }
+          
+
         case 'POST_BOOK_PENDING':
             return{
                 ...state,

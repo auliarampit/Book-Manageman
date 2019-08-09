@@ -1,5 +1,5 @@
 #seacrh {
-    position: absolute;
+    position: relative;
     width: 60%;
     left: 50%;
     padding: 20px 50px;
@@ -10,6 +10,7 @@
     font-size: 15px;
     overflow: hidden;
     outline: none;
+    margin-top: 140px;
 }
 #seacrh::placeholder {
     color: #E5E5E5;

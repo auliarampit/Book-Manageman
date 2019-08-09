@@ -15,9 +15,10 @@ import ModalPinjam from './Components/Pinjam'
 import ModalPengembalian from './Components/Pengembalian'
 import Login from './Components/Login'
 import Register from './Components/Register'
-import ModalAlert from './Components/ModalAlert'
+
 
 import '../src/App.css'
+import Profile from './Screens/Profile';
 
 
 class App extends Component {
@@ -83,11 +84,13 @@ class App extends Component {
       <div id="app">
         <Router>
           
-          <Route exact path={"/book"} component={Nav} />
+          <Route component={Nav} />
 
           <Route path= {'/login'} render={() => <Login  />} />
 
           <Route path = {'/register'} render = {() => <Register/>} />
+
+          <Route path = {'/profile'} render = {() => <Profile/>} />
 
           <Route exact path={"/book"} render={ () =><Seacrh setSeacrh={this.setSeacrh}/>} />
 

@@ -24,12 +24,27 @@ export const getPinjam = (idBook) => {
     };
 };
 
-export const postBook = (data) => {
+export const Pinjam = (idCard) => {
     return {
-        type: 'POST_BOOK',
-        payload: axios.post(`http://192.168.6.104:8082/nameBook`,data, {
+        type: 'PINJAM',
+        payload: axios.get(`http://192.168.6.104:8082/Pinjam/?idCard=${idCard}`, {
             headers: {
                 authorization: 'x-header'
+            }
+        })
+
+    };
+};
+
+export const postBook = (formData) => {
+    return {
+        type: 'POST_BOOK',
+        payload: axios.post(`http://192.168.6.104:8082/nameBook`,formData, {
+            headers: {
+                authorization: 'x-header',
+                'x-control-user' : localStorage.iduser,
+                'x-access-token' : `bearer ${localStorage.token}`,
+                
             }
         })
     }
@@ -49,8 +64,8 @@ export const deleteBook = (idBook, token, iduser) => {
         payload: axios.delete(`http://192.168.6.104:8082/nameBook/${idBook}`,null,{
             headers: {
                 authorization: 'x-header',
-                'x-control-user': iduser,
-                'x-access-token': `bearer ${token}`
+                'x-control-user': localStorage.iduser,
+                'x-access-token': `bearer ${localStorage}`
             },
         })
     }
@@ -59,7 +74,13 @@ export const deleteBook = (idBook, token, iduser) => {
 export const updateBook = (data,id) => {
     return {
         type: 'UPDATE_BOOK',
-        payload: axios.patch(`http://192.168.6.104:8082/nameBook/${id}`,data)
+        payload: axios.patch(`http://192.168.6.104:8082/nameBook/${id}`,data, {
+            headers: {
+                authorization: 'x-header',
+                'x-control-user' : localStorage.iduser,
+                'x-access-token' : `bearer ${localStorage.token}`
+            }
+        })
     }
 }
 

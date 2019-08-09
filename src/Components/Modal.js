@@ -8,31 +8,44 @@ class Modal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      book: []
+      book: [],
     }
+    
   }
 
   componentDidMount = async() => {
     await this.props.dispatch(getBook())
     this.setState ({
-      book: this.props.book
+      book: this.props.book,
+      image: ''
     })
   }
 
-  add = () => {
-    
-    this.props.dispatch(postBook({
-      name: document.getElementById('title').value,
-      image: document.getElementById('image').value,
-      idCategory: document.getElementById('category').value,
-      writer: document.getElementById('writer').value,
-      location: document.getElementById('location').value,
-      description: document.getElementById('description').value,
+  add = async() => {
+     console.log(this.state.image);
+    const formData = new FormData()
+      formData.append('name', document.getElementById('title').value)
+      formData.append('image', this.state.image)
+      formData.append('idCategory', document.getElementById('category').value)
+      formData.append('writer', document.getElementById('writer').value)
+      formData.append('location', document.getElementById('location').value)
+      formData.append('description', document.getElementById('description').value)
       
-
-    }))
-  
+     await this.props.dispatch(postBook(formData))
   }
+
+  pilih(ee) {
+    const selectedFile = ee.target.files[0]
+    const reader = new FileReader()
+    const image = document.getElementById('image')
+    this.setState({
+        image: selectedFile
+    })
+    reader.onload = (eee) => {
+        image.src = eee.target.result
+    }
+    reader.readAsDataURL(selectedFile)
+}
 
   render() {
     const showHideClassName = this.props.show ? "modal display-block" : "modal display-none"
@@ -42,13 +55,12 @@ class Modal extends Component {
         <button onClick={this.props.handleClose} className={'close'}>X</button>
         <p>Add Data</p>
         <div>
-          <div className='inputGroup'>
-            <div className='label'>
-              <p>Url Image</p>
-            </div>
-            <div className='input'>
-              <input type='text' placeholder='Url Image ...' id={'image'} name='image_url' required />
-            </div>
+          <div style={{marginLeft: '50px', marginBottom:'20px'}}>
+            <img id="image" src={'http://rsudblambangan.banyuwangikab.go.id/asset/foto_berita/no-image.jpg'} style={{
+              width: '150px', minHeight: '100px', borderRadius: '10px', border: '1px solid black', marginLeft: '30%'
+              }} />
+            <input type="file" id={'image'} name='image' required onChange={(ee) => this.pilih(ee)} />
+          </div>
           </div>
           <div className='inputGroup'>
             <div className='label'>
@@ -101,7 +113,6 @@ class Modal extends Component {
           <div>
             <button className='save' onClick={this.add} >Save</button>
           </div>
-        </div>
       </section>
     </div>
     )

@@ -32,7 +32,7 @@ class Card extends Component  {
     console.log(this.props.book)
   return (
     <div className='card'>
-      <button className='add' onClick={this.props.showModal} >ADD</button>
+      <button className='add' onClick={this.props.showModal} >{localStorage.token ? 'ADD' : 'DONATE'}</button>
       <div className='card-item'>
         {
         this.props.book.bookList.map(
