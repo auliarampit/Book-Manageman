@@ -47,7 +47,7 @@ class Card extends Component  {
       <button className='add' onClick={this.props.showModal} >{localStorage.token ? 'ADD' : 'DONATE'}</button>
       <div className='card-item'>
         {
-        this.props.book.bookList.map(
+        this.state.book.map(
             item => {
               return (
                 <Link to={`/book/${item.idBook}`}
