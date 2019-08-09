@@ -28,7 +28,7 @@ class Card extends Component  {
 
   getBooks = async () => {
     await this.props.dispatch(getBook())
-    then(()=>{
+    .then(()=>{
       this.setState({
         book : this.props.book
       })
