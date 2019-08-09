@@ -18,14 +18,21 @@ function text (text) {
 }
 
 class Card extends Component  {
-
+  state = {
+    book : []
+  }
   componentDidMount(){
     this.getBooks();
 
   }
 
-  getBooks = () => {
-    this.props.dispatch(getBook());
+  getBooks = async () => {
+    await this.props.dispatch(getBook())
+    then(()=>{
+      this.setState({
+        book : this.props.book
+      })
+    })
   }
   
   render(){
@@ -62,7 +69,7 @@ class Card extends Component  {
 
 const mapStateToProps = ( state ) => {
   return{
-    book:state.book
+    book:state.book.bookList
   }
 }
 
