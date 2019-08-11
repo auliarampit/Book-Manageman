@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Preparation
+
+  Before you can use React, you need to first install Nodejs. To be able to install nodejs, the installer can be obtained from the nodejs website (https://nodejs.org/download). Nodejs are needed because in each step, we often need the Node Package Manager (npm).
+
+ 1. `git clone https://github.com/auliarampit/frontend-bookmanagement`
+ 2. `git clone https://github.com/auliarampit/backend-bookmanagemen`
+ 3. `npm install`
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -66,3 +75,32 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### ScreenShoot App
+<p>
+  Home
+ </p>
+  <img src='http://imgur.com/64MYMsgl.png' />
+<p>
+  Someone who opens this app can view and donate books, and if you want to borrow a meal he must register first,
+</p>
+<p>
+  Register
+</p>
+  <img src='http://imgur.com/27WQPDql.png' />
+<p>
+  After registering, and having an account it will be switched to the home page (register = login),
+</p>
+<p>
+  Detail book and borrow
+</p>
+<img src='http://imgur.com/hrExKNpl.png' />
+<p>
+  On the home page there is the name of me who is logged in, and if the user clicks on the book it will be directed to the detail page, there is a borrow, edit, delete button, but only borrow, edit and delete buttons can be used for the admin
+</p>
+<p>
+  Profile and history
+</p>
+<img src='http://imgur.com/xFUzK4Yl.png'
+<p>
+  dengan klik nama yang ada di halaman home maka akan masuk ke halaman profil, di halaman profil user bisa melihat history dan juga mengupdate profile nya
+</p>
