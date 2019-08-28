@@ -10,7 +10,7 @@
 ## Installation
 ### Clone
 ```
-$ git clone https://github.com/rizkigumilar/Frontend-libraryApp.git
+$ git clone https://github.com/auliarampit/frontend-bookmanagement.git
 $ cd frontend-bookmanagement
 $ npm install
 ```
