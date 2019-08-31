@@ -49,5 +49,5 @@ $ npm start
 </p>
 <img src='http://imgur.com/xFUzK4Yl.png'
 <p>
-  dengan klik nama yang ada di halaman home maka akan masuk ke halaman profil, di halaman profil user bisa melihat history dan juga mengupdate profile nya
+  by clicking on the name on the home page it will go to the profile page, on the profile page the user can see the history and also update his profile
 </p>
